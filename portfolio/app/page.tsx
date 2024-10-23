@@ -1,5 +1,6 @@
 import Navbar from '@/components/ui/navbar';
 import { Button } from '../components/ui/button';
+import Footer from '@/components/ui/footer';
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
         <Navbar />
         <h2>Portfolio</h2>
         <Button />
+        <Footer />
       </main>
   );
 }
