@@ -1,4 +1,5 @@
 import Navbar from '@/components/ui/navbar';
+import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
 import { Button } from '../components/ui/button';
 import Footer from '@/components/ui/footer';
 
@@ -7,6 +8,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between">
         <Navbar />
         <h2>Portfolio</h2>
+        <TypewriterEffectJanky/>
         <Button />
         <Footer />
       </main>
