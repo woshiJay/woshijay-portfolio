@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import ModeToggle from "@/components/ui/mode-toggle"
+import Clock from "@/components/ui/clock"
 
 export default function Navbar() {
   return (
@@ -41,6 +42,7 @@ export default function Navbar() {
             Contact
           </Link>
         </nav>
+        {/* Hidden Menu */}
         <div className="flex items-center gap-4">
           <Sheet>
             <SheetTrigger asChild>
@@ -84,6 +86,7 @@ export default function Navbar() {
           </Sheet>
         </div>
         <div className="flex items-center gap-4">
+          <Clock />
           <ModeToggle />
         </div>
       </div>
