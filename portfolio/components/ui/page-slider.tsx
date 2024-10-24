@@ -68,20 +68,24 @@ const PageSlider = () => {
         {/* Projects Section */}
         <section className="h-full w-full snap-start relative bg-background">
             <div className="max-w-[1200px] mx-auto h-full flex flex-col justify-center p-5">
-                <div className="max-w-3xl"> {/* Add this wrapper div */}
-                    <h2 className="text-5xl font-bold">Projects</h2>
-                    {/* Add your projects content here */}
-                </div>
+                <main className="flex-grow flex items-center justify-start px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl"> {/* Add this wrapper div */}
+                        <h2 className="text-5xl font-bold">Projects</h2>
+                        {/* Add your projects content here */}
+                    </div>
+                </main>
             </div>
         </section>
 
         {/* About Section */}
         <section className="h-full w-full snap-start relative bg-background">
             <div className="max-w-[1200px] mx-auto h-full flex flex-col justify-center p-5">
-                <div className="max-w-3xl"> {/* Add this wrapper div */}
-                <h2 className="text-5xl font-bold">About Me</h2>
-                {/* Add your about content here */}
-            </div>
+                <main className="flex-grow flex items-start justify-start px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-3xl"> {/* Add this wrapper div */}
+                        <h2 className="text-5xl font-bold">About</h2>
+                        {/* Add your projects content here */}
+                    </div>
+                </main>
             </div>
         </section>
 

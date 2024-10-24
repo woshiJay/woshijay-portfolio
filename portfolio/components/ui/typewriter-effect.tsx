@@ -92,22 +92,22 @@ export function TypewriterEffectJanky() {
 
   return (
     <div className="flex flex-col items-start justify-start">
-      <h1 className="text-neutral-600 dark:text-neutral-200 sm:text-base md:text-xl lg:text-2xl mb-5">
-        Hi, I am Jay
+      <h1 className="text-neutral-600 dark:text-neutral-200 sm:text-base md:text-xl lg:text-2xl font-mono mb-5">
+        Hi, I am Jay 👋
       </h1>
       <TypewriterEffect words={words} />
-      <p className="text-neutral-600 dark:text-neutral-200 sm:sm md:text-lg lg:text-xl mt-5">
-        Made in Malaysia ®
+      <p className="text-neutral-600 dark:text-neutral-200 sm:sm md:text-md lg:text-lg font-mono mt-5">
+        Made in Malaysia 🇲🇾
       </p>
       <Button 
       variant="outline"
-      size="sm"
-      className="mt-5 border-neutral-600 dark:border-neutral-200 text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+      size="lg"
+      className="mt-6 text-lg font-bold border-neutral-600 dark:border-neutral-200 text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
       asChild
     >
       <a href="https://drive.google.com/file/d/1mGyNvwwCFHw3J9f7OAE8LtQ1iOtgwBfU/view?usp=sharing" download>
-        <Download className="mr-1" />
-        Download my Resume
+        <Download className="mr-1 h-4 w-4 sm:h-5 sm:w-5" />
+        Download Resume
       </a>
     </Button>
     </div>
