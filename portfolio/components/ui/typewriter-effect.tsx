@@ -72,7 +72,7 @@ export const TypewriterEffect = ({
   return (
     <div
       className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center",
+        "text-base sm:text-xl md:text-3xl lg:text-6xl font-bold text-justify",
         className
       )}
     >
@@ -102,30 +102,30 @@ export function TypewriterEffectJanky() {
     const words = [
       {
         text: "Data",
-        className: "italic",
+        // className: "italic",
       },
       {
         text: "Scientist",
-        className: "italic",
+        // className: "italic",
       },
       {
-        text: "|",
-        className: "italic",
+        text: " // ",
+        // className: "italic",
       },
       {
         text: "Software",
-        className: "italic",
+        // className: "italic",
       },
       {
         text: "Engineer",
-        className: "italic",
+        // className: "italic",
       },
     ];
     return (
-      <div className="flex flex-col items-center justify-center h-[40rem] ">
-        <p className="text-neutral-600 dark:text-neutral-200 text-base  mb-10">
-          The road to freedom starts from here
-        </p>
+      <div className="flex flex-col items-justify justify-center h-[40rem] ">
+        <h1 className="text-neutral-600 dark:text-neutral-200 text-3xl mb-5">
+          Hi, I am Jay.
+        </h1>
         <TypewriterEffect words={words} />
       </div>
     );

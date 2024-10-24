@@ -1,63 +1,108 @@
 "use client";
-
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { OrbitControls, useGLTF, Center, Float } from '@react-three/drei';
 import React, { Suspense } from 'react';
 
 function Model() {
-    const { scene } = useGLTF('/models/shiba.glb');
-    return <primitive object={scene} scale={20.0} />; // Adjusted scale for better view
+  const { scene } = useGLTF('/models/shiba.glb');
+  return (
+    <Float
+      speed={5} // Animation speed
+      rotationIntensity={1} // Rotation intensity
+      floatIntensity={1} // Float intensity
+    >
+      <Center>
+        <primitive 
+          object={scene} 
+          scale={5} // Adjusted scale
+          position={[0, -1, 0]} // Adjust Y position to center vertically
+        />
+      </Center>
+    </Float>
+  );
 }
 
-// Error boundary component
-class ErrorBoundary extends React.Component<
-    { children: React.ReactNode },
-    { hasError: boolean }
-> {
-    constructor(props: { children: React.ReactNode }) {
-        super(props);
-        this.state = { hasError: false };
-    }
-
-    static getDerivedStateFromError() {
-        return { hasError: true };
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return (
-                <div className="text-red-500">
-                    Error loading 3D model. Please check the console for details.
-                </div>
-            );
-        }
-        return this.props.children;
-    }
-}
-
-// Loading placeholder
 function LoadingPlaceholder() {
-    return (
-        <mesh>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color="gray" />
-        </mesh>
-    );
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="gray" />
+    </mesh>
+  );
+}
+
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  render(): React.ReactNode {
+    if (this.state.hasError) {
+      return (
+        <div className="text-red-500">
+          Error loading 3D model. Please check the console for details.
+        </div>
+      );
+    }
+    return this.props.children;
+  }
 }
 
 const ThreeElement = () => {
-    return (
-        <ErrorBoundary>
-            <Canvas camera={{ position: [15, 3, 20] }}> {/* Adjusted camera position */}
-                <ambientLight intensity={1} />
-                <directionalLight position={[2, 5, 2]} intensity={1} />
-                <Suspense fallback={<LoadingPlaceholder />}>
-                    <Model />
-                </Suspense>
-                <OrbitControls enableZoom={false} />
-            </Canvas>
-        </ErrorBoundary>
-    );
+  return (
+    <div className="w-full h-full relative aspect-square">
+      <ErrorBoundary>
+        <Canvas
+          camera={{
+            position: [0, 0, 30],
+            fov: 25, // Narrower field of view for better focus
+            near: 0.1,
+            far: 1000
+          }}
+          className="w-full h-full"
+        >
+          {/* Lighting */}
+          <ambientLight intensity={0.5} />
+          <directionalLight 
+            position={[5, 5, 5]} 
+            intensity={0.5} 
+            castShadow 
+          />
+          <directionalLight 
+            position={[-5, 5, -5]} 
+            intensity={0.3} 
+          />
+
+          {/* Scene content */}
+          <Suspense fallback={<LoadingPlaceholder />}>
+            <Model />
+          </Suspense>
+
+          {/* Controls */}
+          <OrbitControls 
+            enableZoom={false}
+            enablePan={false}
+            minPolarAngle={Math.PI / 2.5}
+            maxPolarAngle={Math.PI / 1.5}
+            rotateSpeed={1}
+          />
+        </Canvas>
+      </ErrorBoundary>
+    </div>
+  );
 };
 
 export default ThreeElement;
