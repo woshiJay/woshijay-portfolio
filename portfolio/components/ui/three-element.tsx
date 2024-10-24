@@ -7,15 +7,15 @@ function Model() {
   const { scene } = useGLTF('/models/shiba.glb');
   return (
     <Float
-      speed={5} // Animation speed
-      rotationIntensity={1} // Rotation intensity
-      floatIntensity={1} // Float intensity
+      speed={5}
+      rotationIntensity={1}
+      floatIntensity={1}
     >
       <Center>
-        <primitive 
-          object={scene} 
-          scale={5} // Adjusted scale
-          position={[0, -1, 0]} // Adjust Y position to center vertically
+        <primitive
+          object={scene}
+          scale={5}
+          position={[0, 2, 0]} // Moved up by adjusting Y position
         />
       </Center>
     </Float>
@@ -63,36 +63,31 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
 const ThreeElement = () => {
   return (
-    <div className="w-full h-full relative aspect-square">
+    <div className="w-full h-[300px] sm:h-[400px] relative mt-[-50px] sm:mt-0">
       <ErrorBoundary>
         <Canvas
           camera={{
             position: [0, 0, 30],
-            fov: 25, // Narrower field of view for better focus
+            fov: 25,
             near: 0.1,
             far: 1000
           }}
           className="w-full h-full"
         >
-          {/* Lighting */}
           <ambientLight intensity={0.5} />
-          <directionalLight 
-            position={[5, 5, 5]} 
-            intensity={0.5} 
-            castShadow 
+          <directionalLight
+            position={[5, 5, 5]}
+            intensity={0.5}
+            castShadow
           />
-          <directionalLight 
-            position={[-5, 5, -5]} 
-            intensity={0.3} 
+          <directionalLight
+            position={[-5, 5, -5]}
+            intensity={0.3}
           />
-
-          {/* Scene content */}
           <Suspense fallback={<LoadingPlaceholder />}>
             <Model />
           </Suspense>
-
-          {/* Controls */}
-          <OrbitControls 
+          <OrbitControls
             enableZoom={false}
             enablePan={false}
             minPolarAngle={Math.PI / 2.5}

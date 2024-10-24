@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
@@ -7,25 +6,23 @@ import { useEffect } from "react";
 export const TypewriterEffect = ({
   words,
   className,
-  cursorClassName,
 }: {
   words: {
     text: string;
     className?: string;
   }[];
   className?: string;
-  cursorClassName?: string;
 }) => {
-  // split text inside of words into array of characters
   const wordsArray = words.map((word) => {
     return {
       ...word,
       text: word.text.split(""),
     };
   });
-
+  
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope);
+  
   useEffect(() => {
     if (isInView) {
       animate(
@@ -69,66 +66,37 @@ export const TypewriterEffect = ({
       </motion.div>
     );
   };
+
   return (
     <div
       className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-6xl font-bold text-justify",
+        "text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-justify",
         className
       )}
     >
       {renderWords()}
-      <motion.span
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className={cn(
-          "inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-blue-500",
-          cursorClassName
-        )}
-      ></motion.span>
     </div>
   );
 };
 
 export function TypewriterEffectJanky() {
-    const words = [
-      {
-        text: "Data",
-        // className: "italic",
-      },
-      {
-        text: "Scientist",
-        // className: "italic",
-      },
-      {
-        text: " // ",
-        // className: "italic",
-      },
-      {
-        text: "Software",
-        // className: "italic",
-      },
-      {
-        text: "Engineer",
-        // className: "italic",
-      },
-    ];
-    return (
-      <div className="flex flex-col items-justify justify-center h-[40rem] ">
-        <h1 className="text-neutral-600 dark:text-neutral-200 text-3xl mb-5">
-          Hi, I am Jay.
-        </h1>
-        <TypewriterEffect words={words} />
-      </div>
-    );
-  }
-  
-  
+  const words = [
+    { text: "Data" },
+    { text: "Scientist" },
+    { text: "&" },
+    { text: "Software" },
+    { text: "Engineer" },
+  ];
+
+  return (
+    <div className="flex flex-col items-start justify-start">
+      <h1 className="text-neutral-600 dark:text-neutral-200 sm:text-base md:text-xl lg:text-2xl mb-5">
+        Hi, I am Jay
+      </h1>
+      <TypewriterEffect words={words} />
+      <p className="text-neutral-600 dark:text-neutral-200 sm:sm md:text-lg lg:text-xl mt-10">
+        Made in Malaysia ®
+      </p>
+    </div>
+  );
+}

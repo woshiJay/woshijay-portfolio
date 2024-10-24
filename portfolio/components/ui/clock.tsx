@@ -25,7 +25,7 @@ const Clock: React.FC = () => {
     return () => clearInterval(intervalId); // Clean up interval on unmount
   }, []);
 
-  return <span className="text-gray-500 dark:text-gray-400">{currentTime}</span>;
+  return <p className="text-gray-500 dark:text-gray-400 sm:text-sm hidden sm:block">{currentTime}</p>;
 };
 
 export default Clock;
