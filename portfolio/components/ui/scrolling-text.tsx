@@ -11,7 +11,7 @@ const ScrollingText: React.FC = () => {
       {/* Infinite scrolling container */}
       <motion.div
         className="flex space-x-4"
-        animate={{ x: ["100%", "-100%"] }} // Start offscreen and move to the left
+        animate={{ x: ["-100%", "100%"] }} // Start offscreen and move to the left
         transition={{ repeat: Infinity, duration: 60, ease: "linear" }} // Infinite loop
       >
         {[...Array(10)].map((_, i) => (
