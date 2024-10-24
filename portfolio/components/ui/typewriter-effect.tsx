@@ -2,6 +2,8 @@
 import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
+import { Button } from "./button";
+import { Download } from "lucide-react";
 
 export const TypewriterEffect = ({
   words,
@@ -70,7 +72,7 @@ export const TypewriterEffect = ({
   return (
     <div
       className={cn(
-        "text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-justify",
+        "text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-justify mb-2",
         className
       )}
     >
@@ -94,9 +96,20 @@ export function TypewriterEffectJanky() {
         Hi, I am Jay
       </h1>
       <TypewriterEffect words={words} />
-      <p className="text-neutral-600 dark:text-neutral-200 sm:sm md:text-lg lg:text-xl mt-10">
+      <p className="text-neutral-600 dark:text-neutral-200 sm:sm md:text-lg lg:text-xl mt-5">
         Made in Malaysia ®
       </p>
+      <Button 
+      variant="outline"
+      size="sm"
+      className="mt-5 border-neutral-600 dark:border-neutral-200 text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+      asChild
+    >
+      <a href="https://drive.google.com/file/d/1mGyNvwwCFHw3J9f7OAE8LtQ1iOtgwBfU/view?usp=sharing" download>
+        <Download className="mr-1" />
+        Download my Resume
+      </a>
+    </Button>
     </div>
   );
 }

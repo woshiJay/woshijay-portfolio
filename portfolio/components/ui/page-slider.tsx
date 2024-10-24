@@ -91,7 +91,7 @@ const PageSlider = () => {
             <button
               key={index}
               onClick={() => scrollToSection(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 activeSection === index
                   ? 'bg-primary scale-125'
                   : 'bg-primary/30 hover:bg-primary/50'
