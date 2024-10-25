@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
 import ThreeElement from '@/components/ui/three-element';
 import Project from '@/components/ui/project';
+import About from '@/components/ui/about';
 
 const PageSlider = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -88,7 +89,6 @@ const PageSlider = () => {
           scrollBehavior: 'smooth'
         }}
       >
-        {/* Your existing sections remain the same */}
         <section className="h-full w-full snap-start relative bg-background">
           <div className="max-w-[1200px] mx-auto h-full flex flex-col p-5">
             <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -111,13 +111,7 @@ const PageSlider = () => {
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
-          <div className="max-w-[1200px] mx-auto h-full flex flex-col justify-center p-5">
-            <main className="flex-grow flex items-center justify-end px-4 sm:px-6 lg:px-8">
-              <div className="max-w-3xl">
-                <h2 className="text-5xl font-bold">About</h2>
-              </div>
-            </main>
-          </div>
+            <About />
         </section>
 
         {/* Section Indicators with hover area */}

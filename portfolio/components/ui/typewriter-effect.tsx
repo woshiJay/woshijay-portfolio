@@ -107,7 +107,7 @@ export function TypewriterEffectJanky() {
     >
       <a href="https://drive.google.com/file/d/1mGyNvwwCFHw3J9f7OAE8LtQ1iOtgwBfU/view?usp=sharing" download>
         <Download className="mr-1 h-4 w-4 sm:h-5 sm:w-5" />
-        Download Resume
+        Resume
       </a>
     </Button>
     </div>
