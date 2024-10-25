@@ -101,7 +101,7 @@ export function TypewriterEffectJanky() {
       </p>
       <Button 
       variant="outline"
-      size="lg"
+      size="sm"
       className="my-6 text-lg font-bold border-neutral-600 dark:border-neutral-200 text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
       asChild
     >

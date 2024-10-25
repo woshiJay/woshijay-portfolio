@@ -1,13 +1,39 @@
 "use client";
-
 import React, { useState, useEffect, useRef } from 'react';
 import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
 import ThreeElement from '@/components/ui/three-element';
+import Project from '@/components/ui/project';
 
 const PageSlider = () => {
   const [activeSection, setActiveSection] = useState(0);
+  const [showDots, setShowDots] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const sections = ['home', 'projects', 'about'];
+
+  const resetDotsTimeout = () => {
+    // Clear existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Show dots immediately
+    setShowDots(true);
+
+    // Set new timeout to hide dots after 2 seconds
+    timeoutRef.current = setTimeout(() => {
+      setShowDots(false);
+    }, 500);
+  };
+
+  useEffect(() => {
+    // Cleanup timeout on component unmount
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +43,9 @@ const PageSlider = () => {
         const windowHeight = container.clientHeight;
         const newActiveSection = Math.round(scrollPosition / windowHeight);
         setActiveSection(newActiveSection);
+        
+        // Reset dots timeout on scroll
+        resetDotsTimeout();
       }
     };
 
@@ -26,6 +55,18 @@ const PageSlider = () => {
       return () => container.removeEventListener('scroll', handleScroll);
     }
   }, []);
+
+  // Also show dots when hovering over their area
+  const handleDotsAreaHover = () => {
+    setShowDots(true);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  const handleDotsAreaLeave = () => {
+    resetDotsTimeout();
+  };
 
   const scrollToSection = (index: number) => {
     if (containerRef.current) {
@@ -38,7 +79,7 @@ const PageSlider = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-4rem-4rem)] w-full overflow-hidden"> {/* Adjusted for navbar and footer */}
+    <div className="h-[calc(100vh-4rem-4rem)] w-full overflow-hidden">
       <div
         ref={containerRef}
         className="h-full overflow-y-auto snap-mandatory snap-y"
@@ -47,7 +88,7 @@ const PageSlider = () => {
           scrollBehavior: 'smooth'
         }}
       >
-        {/* Home Section */}
+        {/* Your existing sections remain the same */}
         <section className="h-full w-full snap-start relative bg-background">
           <div className="max-w-[1200px] mx-auto h-full flex flex-col p-5">
             <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
@@ -65,44 +106,40 @@ const PageSlider = () => {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section className="h-full w-full snap-start relative bg-background">
-            <div className="max-w-[1200px] mx-auto h-full flex flex-col justify-center p-5">
-                <main className="flex-grow flex items-center justify-start px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl">
-                        <h2 className="text-5xl font-bold">Projects</h2>
-                        {/* add card here */}
-                    </div>
-                </main>
-            </div>
+          <Project />
         </section>
 
-        {/* About Section */}
         <section className="h-full w-full snap-start relative bg-background">
-            <div className="max-w-[1200px] mx-auto h-full flex flex-col justify-center p-5">
-                <main className="flex-grow flex items-center justify-end px-4 sm:px-6 lg:px-8">
-                    <div className="max-w-3xl"> {/* Add this wrapper div */}
-                        <h2 className="text-5xl font-bold">About</h2>
-                        {/* Add your about content here */}
-                    </div>
-                </main>
-            </div>
+          <div className="max-w-[1200px] mx-auto h-full flex flex-col justify-center p-5">
+            <main className="flex-grow flex items-center justify-end px-4 sm:px-6 lg:px-8">
+              <div className="max-w-3xl">
+                <h2 className="text-5xl font-bold">About</h2>
+              </div>
+            </main>
+          </div>
         </section>
 
-        {/* Section Indicators */}
-        <div className="fixed right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4">
-          {sections.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToSection(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                activeSection === index
-                  ? 'bg-primary scale-125'
-                  : 'bg-primary/30 hover:bg-primary/50'
-              }`}
-              aria-label={`Scroll to ${sections[index]} section`}
-            />
-          ))}
+        {/* Section Indicators with hover area */}
+        <div 
+          className="fixed right-0 top-1/2 -translate-y-1/2 h-48 w-12 flex items-center justify-center hidden sm:flex"
+          onMouseEnter={handleDotsAreaHover}
+          onMouseLeave={handleDotsAreaLeave}
+        >
+          <div className={`flex flex-col gap-4 transition-opacity duration-300 ${showDots ? 'opacity-100' : 'opacity-0'}`}>
+            {sections.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToSection(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  activeSection === index
+                    ? 'bg-primary scale-125'
+                    : 'bg-primary/30 hover:bg-primary/50'
+                }`}
+                aria-label={`Scroll to ${sections[index]} section`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
