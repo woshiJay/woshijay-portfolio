@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
 import ThreeElement from '@/components/ui/three-element';
-import Project from '@/components/ui/project';
 import About from '@/components/ui/about';
+import Project from '@/components/ui/project';
 import Contact from '@/components/ui/contact';
 
 const PageSlider = () => {
@@ -11,7 +11,7 @@ const PageSlider = () => {
   const [showDots, setShowDots] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const sections = ['home', 'projects', 'about', 'contact'];
+  const sections = ['home', 'about', 'projects', 'contact'];
 
   const resetDotsTimeout = () => {
     // Clear existing timeout
@@ -81,7 +81,7 @@ const PageSlider = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-4rem-4rem)] w-full overflow-hidden">
+    <div className="h-[calc(100vh-4rem-8rem)] w-full overflow-hidden">
       <div
         ref={containerRef}
         className="h-full overflow-y-auto snap-mandatory snap-y"
@@ -108,11 +108,11 @@ const PageSlider = () => {
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
-          <Project />
+            <About />
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
-            <About />
+          <Project />
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
