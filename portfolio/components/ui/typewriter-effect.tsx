@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
 import { Button } from "./button";
-import { Download } from "lucide-react";
+import { Download, Mail, Github, Linkedin} from "lucide-react";
 
 export const TypewriterEffect = ({
   words,
@@ -97,19 +97,45 @@ export function TypewriterEffectJanky() {
       </h1>
       <TypewriterEffect words={words} />
       <p className="text-neutral-600 dark:text-neutral-200 sm:sm md:text-md lg:text-lg font-mono my-5">
-        Made in Malaysia 🇲🇾
+        Based in KL, Malaysia
       </p>
-      <Button 
-      variant="outline"
-      size="sm"
-      className="my-6 text-lg font-bold border-neutral-600 dark:border-neutral-200 text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-      asChild
-    >
-      <a href="https://drive.google.com/file/d/1mGyNvwwCFHw3J9f7OAE8LtQ1iOtgwBfU/view?usp=sharing" download>
-        <Download className="mr-1 h-4 w-4 sm:h-5 sm:w-5" />
-        Resume
-      </a>
-    </Button>
+      <div className="flex items-center gap-6 mt-4">
+        <Button
+          variant="outline"
+          size="sm"
+          className="rounded-full px-5 text-sm font-bold border-neutral-600 dark:border-neutral-200 text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+          asChild
+        >
+          <a href="https://drive.google.com/file/d/1mGyNvwwCFHw3J9f7OAE8LtQ1iOtgwBfU/view?usp=sharing" download>
+            <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+            Resume
+          </a>
+        </Button>
+        <div className="flex items-center gap-3 sm:gap-6">
+          <a
+            href="mailto:sengkit100@gmail.com"
+            className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          >
+            <Mail className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/sengkit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          >
+            <Linkedin className="h-5 w-5" />
+          </a>
+          <a
+            href="https://github.com/woshijay"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

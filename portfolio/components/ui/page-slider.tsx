@@ -4,13 +4,14 @@ import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
 import ThreeElement from '@/components/ui/three-element';
 import Project from '@/components/ui/project';
 import About from '@/components/ui/about';
+import Contact from '@/components/ui/contact';
 
 const PageSlider = () => {
   const [activeSection, setActiveSection] = useState(0);
   const [showDots, setShowDots] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const sections = ['home', 'projects', 'about'];
+  const sections = ['home', 'projects', 'about', 'contact'];
 
   const resetDotsTimeout = () => {
     // Clear existing timeout
@@ -113,6 +114,11 @@ const PageSlider = () => {
         <section className="h-full w-full snap-start relative bg-background">
             <About />
         </section>
+
+        <section className="h-full w-full snap-start relative bg-background">
+            <Contact />
+        </section>
+
 
         {/* Section Indicators with hover area */}
         <div 
