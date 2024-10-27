@@ -55,7 +55,7 @@ const Project = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="min-w-[300px] h-[550px] flex-shrink-0 snap-start bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 transition-colors duration-300"
+              className="min-w-[300px] h-[450px] lg:h-[500px] flex-shrink-0 snap-start bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 transition-colors duration-300"
             >
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-200">{project.title}</h3>
