@@ -1,10 +1,12 @@
 "use client";
+
 import React, { useState, useEffect, useRef } from 'react';
 import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
 import ThreeElement from '@/components/ui/three-element';
 import About from '@/components/ui/about';
 import Project from '@/components/ui/project';
 import Contact from '@/components/ui/contact';
+import { Github, Linkedin, Mailbox } from 'lucide-react';
 
 const PageSlider = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -14,22 +16,16 @@ const PageSlider = () => {
   const sections = ['home', 'about', 'projects', 'contact'];
 
   const resetDotsTimeout = () => {
-    // Clear existing timeout
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-
-    // Show dots immediately
     setShowDots(true);
-
-    // Set new timeout to hide dots after 2 seconds
     timeoutRef.current = setTimeout(() => {
       setShowDots(false);
     }, 500);
   };
 
   useEffect(() => {
-    // Cleanup timeout on component unmount
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -45,8 +41,6 @@ const PageSlider = () => {
         const windowHeight = container.clientHeight;
         const newActiveSection = Math.round(scrollPosition / windowHeight);
         setActiveSection(newActiveSection);
-        
-        // Reset dots timeout on scroll
         resetDotsTimeout();
       }
     };
@@ -58,7 +52,6 @@ const PageSlider = () => {
     }
   }, []);
 
-  // Also show dots when hovering over their area
   const handleDotsAreaHover = () => {
     setShowDots(true);
     if (timeoutRef.current) {
@@ -80,8 +73,44 @@ const PageSlider = () => {
     }
   };
 
+  const Footer = () => (
+    <div className="w-full py-4 px-4 bg-background">
+      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3">
+        <div className="flex items-center space-x-4">
+          <a
+            href="https://github.com/woshijay"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+          >
+            <Github size={20} />
+          </a>
+          <a
+            href="mailto:sengkit100@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+          >
+            <Mailbox size={20} />
+          </a>
+          <a
+            href="https://linkedin.com/in/sengkit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+          >
+            <Linkedin size={20} />
+          </a>
+        </div>
+        <p className="text-xs font-mono font-bold text-gray-600 dark:text-gray-400">
+          © {new Date().getFullYear()} woshiJay
+        </p>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="h-[calc(100vh-4rem-8rem)] w-full overflow-hidden">
+    <div className="h-[calc(100vh-4rem)] w-full overflow-hidden">
       <div
         ref={containerRef}
         className="h-full overflow-y-auto snap-mandatory snap-y"
@@ -108,7 +137,7 @@ const PageSlider = () => {
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
-            <About />
+          <About />
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
@@ -116,11 +145,14 @@ const PageSlider = () => {
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">
-            <Contact />
+          <div className="h-full flex flex-col">
+            <div className="flex-grow">
+              <Contact />
+            </div>
+            <Footer />
+          </div>
         </section>
 
-
-        {/* Section Indicators with hover area */}
         <div 
           className="fixed right-0 top-1/2 -translate-y-1/2 h-48 w-12 flex items-center justify-center hidden sm:flex"
           onMouseEnter={handleDotsAreaHover}

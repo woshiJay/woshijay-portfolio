@@ -32,7 +32,7 @@ export default function Footer() {
           </a>
         </div>
         <p className="text-xs font-mono font-bold text-gray-600 dark:text-gray-400">
-          © {new Date().getFullYear()} woshiJay
+          © {new Date().getFullYear()} woshiJay - Made with ❤️
         </p>
       </div>
     </footer>
