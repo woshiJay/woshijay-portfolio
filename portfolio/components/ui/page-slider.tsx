@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { TypewriterEffectJanky } from "@/components/ui/typewriter-effect";
-import ThreeElement from '@/components/ui/three-element';
+import Home from '@/components/ui/home';
 import About from '@/components/ui/about';
 import Project from '@/components/ui/project';
 import Contact from '@/components/ui/contact';
-import { Github, Linkedin, Mailbox } from 'lucide-react';
+import Footer from '@/components/ui/footer';
 
 const PageSlider = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -73,42 +72,6 @@ const PageSlider = () => {
     }
   };
 
-  const Footer = () => (
-    <div className="w-full py-4 px-4 bg-background">
-      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-3">
-        <div className="flex items-center space-x-4">
-          <a
-            href="https://github.com/woshijay"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-          >
-            <Github size={20} />
-          </a>
-          <a
-            href="mailto:sengkit100@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-          >
-            <Mailbox size={20} />
-          </a>
-          <a
-            href="https://linkedin.com/in/sengkit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
-          >
-            <Linkedin size={20} />
-          </a>
-        </div>
-        <p className="text-xs font-mono font-bold text-gray-600 dark:text-gray-400">
-          © {new Date().getFullYear()} woshiJay
-        </p>
-      </div>
-    </div>
-  );
-
   return (
     <div className="h-[calc(100vh-4rem)] w-full overflow-hidden">
       <div
@@ -120,20 +83,7 @@ const PageSlider = () => {
         }}
       >
         <section className="h-full w-full snap-start relative bg-background">
-          <div className="max-w-[1200px] mx-auto h-full flex flex-col p-5">
-            <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
-              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
-                <div className="w-full md:w-1/2">
-                  <TypewriterEffectJanky />
-                </div>
-                <div className="w-full md:w-1/2 flex justify-center items-center">
-                  <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px]">
-                    <ThreeElement />
-                  </div>
-                </div>
-              </div>
-            </main>
-          </div>
+          <Home />
         </section>
 
         <section className="h-full w-full snap-start relative bg-background">

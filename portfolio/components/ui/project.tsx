@@ -25,11 +25,9 @@ const Project = () => {
   };
 
   const projects = [
-    { id: 1, title: "Project 1" },
-    { id: 2, title: "Project 2" },
-    { id: 3, title: "Project 3" },
-    { id: 4, title: "Project 4" },
-    { id: 5, title: "Project 5" },
+    { id: 1, title: "吃什么 What to Eat" },
+    { id: 2, title: "Land Use Prediction" },
+    { id: 3, title: "Wordle Clone" },
   ];
 
   return (
@@ -55,7 +53,7 @@ const Project = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="min-w-[300px] h-[450px] lg:h-[500px] flex-shrink-0 snap-start bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 transition-colors duration-300"
+              className="min-w-[300px] h-[450px] lg:w-[450px] lg:h-[550px] flex-shrink-0 snap-start bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 transition-colors duration-300"
             >
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-neutral-900 dark:text-neutral-200">{project.title}</h3>
