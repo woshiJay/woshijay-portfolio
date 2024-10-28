@@ -11,20 +11,20 @@ const Project = () => {
     if (carouselRef.current) {
       const { scrollWidth, clientWidth } = carouselRef.current;
       const isScrollable = scrollWidth > clientWidth;
-      setShowRightArrow(isScrollable);
+      setShowRightArrow(isScrollable); // Show right arrow if scrollable
     }
   };
 
   const checkScroll = () => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setShowLeftArrow(scrollLeft > 0);
-      const isAtEnd = Math.abs(scrollWidth - clientWidth - scrollLeft) < 5;
-      setShowRightArrow(!isAtEnd && scrollWidth > clientWidth);
+      setShowLeftArrow(scrollLeft > 0); // Show left arrow if not at start
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 1); // Show right arrow if not at end
     }
   };
 
   useEffect(() => {
+    // Observer for resizing, so arrows appear/disappear based on container width
     const observer = new ResizeObserver(() => {
       checkScrollability();
       checkScroll();
@@ -40,7 +40,7 @@ const Project = () => {
   useEffect(() => {
     checkScrollability();
   }, []);
-
+  
   const scroll = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
       const scrollAmount = window.innerWidth >= 768 ? 400 : 300;
@@ -55,39 +55,37 @@ const Project = () => {
     {
       id: 1,
       title: "吃什么 What to Eat",
-      description: "A food recommendation app",
       tech: "React Native & Firebase",
       imageUrl: "/images/csm.png"
     },
     {
       id: 2,
       title: "Land Use Prediction",
-      description: "ML-based land use analysis",
       tech: "Python & TensorFlow",
       imageUrl: "/images/landio.png"
     },
     {
       id: 3,
       title: "Wordle Clone",
-      description: "A recreation of the popular word game",
       tech: "React & TypeScript",
       imageUrl: "/images/wdlclone.png"
     }
   ];
 
   return (
-    <section className="w-full min-h-screen flex items-center bg-white dark:bg-neutral-950">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex items-center gap-4 my-8">
-          <h2 className="text-6xl font-bold text-neutral-900 dark:text-neutral-50 mb-8">
+    <section className="w-full min-h-screen flex flex-col justify-center bg-white dark:bg-neutral-950">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 lg:py-20">
+        <div className="flex items-center gap-4 mb-8 md:mb-12">
+          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50">
             Projects
           </h2>
         </div>
 
         <div className="relative">
+          {/* Carousel Container */}
           <div
             ref={carouselRef}
-            className="overflow-x-auto scrollbar-hide flex gap-6 snap-x snap-mandatory"
+            className="overflow-x-auto scrollbar-hide flex gap-6 snap-x snap-mandatory px-4"
             onScroll={checkScroll}
             style={{
               scrollbarWidth: 'none',
@@ -98,16 +96,16 @@ const Project = () => {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="min-w-[280px] w-[calc(100vw-2rem)] sm:w-[320px] lg:w-[380px] flex-shrink-0 snap-start group cursor-pointer"
+                className="min-w-[280px] w-[calc(100vw-2rem)] sm:w-[320px] lg:w-[320px] flex-shrink-0 snap-start group cursor-pointer mx-auto"
               >
-                <div className="relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600 hover:-translate-y-2 shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]">
+                <div className="relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 transition-all duration-300 hover:border-neutral-400 dark:hover:border-neutral-600 hover:-translate-y-2 shadow-sm hover:shadow-lg">
                   <div className="aspect-[4/3] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
                     <div className="w-full h-full relative">
                       <Image
                         src={project.imageUrl}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="object-cover transition-transform duration-300 group-hover:scale-101"
                         sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 380px"
                         priority
                       />
@@ -122,19 +120,17 @@ const Project = () => {
                     <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2 md:mb-4">
                       {project.tech}
                     </p>
-                    <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">
-                      {project.description}
-                    </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
+          {/* Navigation buttons */}
           {showLeftArrow && (
             <button
               onClick={() => scroll('left')}
-              className="absolute -left-2 md:-left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-neutral-800 p-2 rounded-full shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-300 border border-neutral-200 dark:border-neutral-700 z-10"
+              className="absolute left-0 -ml-6 top-1/2 -translate-y-1/2 bg-white dark:bg-neutral-800 p-2 rounded-full shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-300 border border-neutral-200 dark:border-neutral-700 z-10"
               aria-label="Previous projects"
             >
               <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-neutral-700 dark:text-neutral-200" />
@@ -143,7 +139,7 @@ const Project = () => {
           {showRightArrow && (
             <button
               onClick={() => scroll('right')}
-              className="absolute -right-2 md:-right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-neutral-800 p-2 rounded-full shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-300 border border-neutral-200 dark:border-neutral-700 z-10"
+              className="absolute right-0 -mr-6 top-1/2 -translate-y-1/2 bg-white dark:bg-neutral-800 p-2 rounded-full shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors duration-300 border border-neutral-200 dark:border-neutral-700 z-10"
               aria-label="Next projects"
             >
               <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-neutral-700 dark:text-neutral-200" />
