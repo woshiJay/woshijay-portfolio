@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
 import { Button } from "./button";
-import { Download, Mail, Github, Linkedin} from "lucide-react";
+import { Download, Mailbox, Github, Linkedin} from "lucide-react";
 
 export const TypewriterEffect = ({
   words,
@@ -113,10 +113,18 @@ export function TypewriterEffectJanky() {
         </Button>
         <div className="flex items-center gap-3 sm:gap-6">
           <a
+            href="https://github.com/woshijay"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
             href="mailto:sengkit100@gmail.com"
             className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
           >
-            <Mail className="h-5 w-5" />
+            <Mailbox className="h-5 w-5" />
           </a>
           <a
             href="https://linkedin.com/in/sengkit"
@@ -125,14 +133,6 @@ export function TypewriterEffectJanky() {
             className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
           >
             <Linkedin className="h-5 w-5" />
-          </a>
-          <a
-            href="https://github.com/woshijay"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full text-neutral-600 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-          >
-            <Github className="h-5 w-5" />
           </a>
         </div>
       </div>

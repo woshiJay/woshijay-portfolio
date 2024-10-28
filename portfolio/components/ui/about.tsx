@@ -9,7 +9,6 @@ export default function About() {
                     <p className="text-lg md:text-xl lg:text-2xl my-4">I’m a passionate developer and data enthusiast with a strong foundation in full-stack development and data analytics. Skilled in building dynamic, user-focused applications using HTML, CSS, JavaScript, Node.js, and Firebase, I enjoy creating solutions that enhance user experience. </p>
                     <p className="text-lg md:text-xl lg:text-2xl my-4">I also leverage Python and machine learning tools to bring data-driven insights to life, using interactive dashboards for real-time results. Eager to innovate and solve real-world problems, I’m ready to contribute to software engineering or data science projects that make an impact.
                     </p>
-
                 </div>
             </main>
         </div>
