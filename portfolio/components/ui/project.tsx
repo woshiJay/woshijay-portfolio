@@ -1,6 +1,9 @@
+// project.tsx
+
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Project = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -56,19 +59,70 @@ const Project = () => {
       id: 1,
       title: "吃什么 What to Eat",
       tech: "React Native & Firebase",
-      imageUrl: "/images/csm.png"
+      imageUrl: "/images/csm.png",
+      slug: "what-to-eat",
+      description: "A mobile application that helps users decide what to eat by providing personalized restaurant recommendations based on their preferences and location.",
+      features: [
+        "Personalized restaurant recommendations",
+        "Location-based search",
+        "User preference tracking",
+        "Restaurant details and reviews",
+        "Bookmark favorite restaurants"
+      ],
+      technologies: [
+        "React Native",
+        "Firebase",
+        "Google Maps API",
+        "Expo",
+        "JavaScript"
+      ],
+      demoUrl: "https://example.com/demo",
+      githubUrl: "https://github.com/username/what-to-eat"
     },
     {
       id: 2,
       title: "Land Use Prediction",
       tech: "Python & TensorFlow",
-      imageUrl: "/images/landio.png"
+      imageUrl: "/images/landio.png",
+      slug: "land-use-prediction",
+      description: "An AI-powered system that predicts land use patterns using satellite imagery and machine learning techniques.",
+      features: [
+        "Satellite image analysis",
+        "Machine learning predictions",
+        "Data visualization",
+        "Historical pattern analysis"
+      ],
+      technologies: [
+        "Python",
+        "TensorFlow",
+        "OpenCV",
+        "NumPy",
+        "Pandas"
+      ],
+      githubUrl: "https://github.com/username/land-use-prediction"
     },
     {
       id: 3,
       title: "Wordle Clone",
       tech: "React & TypeScript",
-      imageUrl: "/images/wdlclone.png"
+      imageUrl: "/images/wdlclone.png",
+      slug: "wordle-clone",
+      description: "A web-based clone of the popular word game Wordle, built with React and TypeScript.",
+      features: [
+        "Daily word challenges",
+        "Keyboard input support",
+        "Score tracking",
+        "Share results feature",
+        "Dark mode support"
+      ],
+      technologies: [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Local Storage"
+      ],
+      demoUrl: "https://example.com/wordle-clone",
+      githubUrl: "https://github.com/username/wordle-clone"
     }
   ];
 
@@ -93,8 +147,9 @@ const Project = () => {
               WebkitOverflowScrolling: 'touch',
             }}
           >
-            {projects.map((project) => (
-              <div
+{projects.map((project) => (
+              <Link
+                href={`/projects/${project.slug}`}
                 key={project.id}
                 className="min-w-[280px] w-[calc(100vw-2rem)] sm:w-[320px] lg:w-[320px] flex-shrink-0 snap-start group cursor-pointer mx-auto"
               >
@@ -122,8 +177,8 @@ const Project = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-            ))}
+              </Link>
+            ))}          
           </div>
 
           {/* Navigation buttons */}
