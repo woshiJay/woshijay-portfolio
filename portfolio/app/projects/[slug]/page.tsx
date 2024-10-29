@@ -17,11 +17,14 @@ const projects = [
       "Bookmark favorite restaurants"
     ],
     technologies: [
-      "React Native",
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "JavaScript",
       "Firebase",
+      "Express.js",
+      "Node.js",
       "Google Maps API",
-      "Expo",
-      "JavaScript"
     ],
     demoUrl: "https://chi-se-mo.web.app/",
     githubUrl: "https://github.com/woshijay/chi-she-mo"
@@ -44,7 +47,8 @@ const projects = [
       "TensorFlow",
       "OpenCV",
       "NumPy",
-      "Pandas"
+      "Pandas",
+      "Streamlit",
     ],
     githubUrl: "https://github.com/woshijay/land-use-FYP"
   },
@@ -63,9 +67,9 @@ const projects = [
       "Dark mode support"
     ],
     technologies: [
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
+      "HTML",
+      "CSS",
+      "Javascript",
       "Local Storage"
     ],
     demoUrl: "https://example.com/wordle-clone",
