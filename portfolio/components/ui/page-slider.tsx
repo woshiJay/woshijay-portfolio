@@ -90,7 +90,7 @@ const PageSlider = () => {
           <About />
         </section>
 
-        <section className="h-full w-full snap-start relative bg-background">
+        <section id="projects" className="h-full w-full snap-start relative bg-background">
           <Project />
         </section>
 
