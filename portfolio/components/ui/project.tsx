@@ -76,8 +76,8 @@ const Project = () => {
         "Expo",
         "JavaScript"
       ],
-      demoUrl: "https://example.com/demo",
-      githubUrl: "https://github.com/username/what-to-eat"
+      demoUrl: "https://chi-se-mo.web.app/",
+      githubUrl: "https://github.com/woshijay/chi-she-mo"
     },
     {
       id: 2,
@@ -99,7 +99,7 @@ const Project = () => {
         "NumPy",
         "Pandas"
       ],
-      githubUrl: "https://github.com/username/land-use-prediction"
+      githubUrl: "https://github.com/woshijay/land-use-FYP"
     },
     {
       id: 3,
@@ -122,7 +122,7 @@ const Project = () => {
         "Local Storage"
       ],
       demoUrl: "https://example.com/wordle-clone",
-      githubUrl: "https://github.com/username/wordle-clone"
+      githubUrl: "https://github.com/woshijay/wordle-clone"
     }
   ];
 
